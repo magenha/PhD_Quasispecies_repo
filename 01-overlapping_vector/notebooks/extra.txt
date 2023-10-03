@@ -1,0 +1,116 @@
+#Find the neigbours of each node, not present in the Surrogate Network
+rev_index_dict = {index_dict[i]:i for i in index_dict.keys()}   #index -> sequence
+
+
+def dif_seqs(a, b):
+    return sum ( a[i] != b[i] for i in range(len(a)))
+
+def are_neighbors(a,b):
+    d = dif_seqs(a,b)
+    if d == 1:
+        return True
+    else:
+        return False
+
+def neighbors(seq, whole):
+    '''
+    Function that determines the neighbors of a sequence seq.
+    Input:
+        -seq  -> sequence string
+        -whole -> universe of all sequences as strings
+    Return:
+        -neighs_list -> list of ids of neighbor sequences
+    '''
+    
+    global index_dict
+    neighs_list = []
+    for x in whole:
+        
+        if are_neighbors(seq, x):
+            neighs_list.append(index_dict[x])
+            #print(index_dict[x])
+        else:
+            pass
+    return neighs_list
+  
+    
+# JUST execute this one time because we will save these dicts with pickle
+n_dict = {n:[] for n in list_nodes}
+
+for node in list_nodes:
+
+    whole = list(index_dict.keys())
+    seq = rev_index_dict[node]
+    n_dict[node] = neighbors(seq, whole)
+
+    
+for node in list_nodes:
+
+    with open(f'neighbors_{node}.pickle', 'wb') as handle:
+        pickle.dump(n_dict[node], handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+#Save the dicts
+#find common neighbors
+unrep_n_dict = {}
+
+#AB    2,0
+unrep_n_dict[(2,0)] = []
+for e in n_dict[2]:
+    if (e not in n_dict[0] and e not in list_nodes):
+        unrep_n_dict[(2,0)].append(e)
+
+
+#BC    0,1
+unrep_n_dict[(0,1)] = []
+for e in n_dict[0]:
+    if (e not in n_dict[1] and e not in list_nodes):
+        unrep_n_dict[(0,1)].append(e)
+
+#CX    1,12
+unrep_n_dict[(1,12)] = []
+for e in n_dict[1]:
+    if (e not in n_dict[12] and e not in list_nodes):
+        unrep_n_dict[(1,12)].append(e)
+
+#AX    2,12
+unrep_n_dict[(2,12)] = []
+for e in n_dict[2]:
+    if (e not in n_dict[12] and e not in list_nodes):
+        unrep_n_dict[(2,12)].append(e)
+ 
+#AD    2,22
+unrep_n_dict[(2,22)] = []
+for e in n_dict[2]:
+    if (e not in n_dict[22] and e not in list_nodes):
+        unrep_n_dict[(2,22)].append(e)
+
+
+#Find isolated neighbors
+unrep_n_dict[0] = []   #B
+for e in n_dict[0]:
+    if (e not in unrep_n_dict[(2,0)] and e not in unrep_n_dict[(0,1)] and e not in list_nodes):
+        unrep_n_dict[0].append(e)
+
+unrep_n_dict[1] = []  #C
+for e in n_dict[1]:
+    if (e not in unrep_n_dict[(0,1)] and e not in unrep_n_dict[(1,12)] and e not in list_nodes):
+        unrep_n_dict[1].append(e)
+
+unrep_n_dict[2] = []  #A   results that A has all neighbours communicated with D, X or B (odd?)
+for e in n_dict[2]:
+    if (e not in unrep_n_dict[(2,0)] and e not in unrep_n_dict[(2,12)] and e not in unrep_n_dict[(2,22)] and e not in list_nodes):
+        unrep_n_dict[2].append(e)
+
+        
+unrep_n_dict[12] = [] #X
+for e in n_dict[12]:
+    if (e not in unrep_n_dict[(1,12)] and e not in unrep_n_dict[(2,12)] and e not in list_nodes):
+        unrep_n_dict[12].append(e)
+                
+unrep_n_dict[22] = [] #D
+for e in n_dict[22]:
+    if (e not in unrep_n_dict[(2,22)] and e not in list_nodes):
+        unrep_n_dict[22].append(e)
+        
+with open(f'definitive_neigh_dict.pickle', 'wb') as handle:
+    pickle.dump(unrep_n_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)

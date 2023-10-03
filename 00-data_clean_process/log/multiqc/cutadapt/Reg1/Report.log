@@ -1,0 +1,24 @@
+
+  /// MultiQC 🔍 | v1.13
+
+[2022-11-28 18:38:33,322] multiqc                                            [DEBUG  ]  This is MultiQC v1.13
+[2022-11-28 18:38:33,322] multiqc                                            [DEBUG  ]  Command used: /home/samuel/mambaforge/envs/SeqsAnalyses/bin/multiqc /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/log/cutadapt/Reg1/ -f -v -m cutadapt -o /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/multiqc/cutadapt/Reg1
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Could not connect to multiqc.info for version check: <urlopen error [Errno -3] Temporary failure in name resolution>
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Working dir : /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Template    : default
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Running Python 3.10.6 | packaged by conda-forge | (main, Aug 22 2022, 20:35:26) [GCC 10.4.0]
+[2022-11-28 18:38:33,324] multiqc                                            [INFO   ]  Only using modules: cutadapt
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Analysing modules: cutadapt
+[2022-11-28 18:38:33,324] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmpnw2vg9m0
+[2022-11-28 18:38:33,412] multiqc                                            [INFO   ]  Search path : /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/log/cutadapt/Reg1
+[2022-11-28 18:38:33,412] multiqc                                            [DEBUG  ]  Ignored 279 search patterns as didn't match running modules.
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 35/35  
+[2022-11-28 18:38:33,432] multiqc                                            [DEBUG  ]  Summary of files that were skipped by the search: []
+[2022-11-28 18:38:33,596] multiqc.plots.bargraph                             [DEBUG  ]  Using matplotlib version 3.6.2
+[2022-11-28 18:38:33,596] multiqc.plots.linegraph                            [DEBUG  ]  Using matplotlib version 3.6.2
+[2022-11-28 18:38:33,623] multiqc.modules.cutadapt.cutadapt                  [INFO   ]  Found 35 reports
+[2022-11-28 18:38:33,634] multiqc                                            [INFO   ]  Compressing plot data
+[2022-11-28 18:38:33,648] multiqc                                            [INFO   ]  Report      : out/multiqc/cutadapt/Reg1/multiqc_report.html
+[2022-11-28 18:38:33,648] multiqc                                            [INFO   ]  Data        : out/multiqc/cutadapt/Reg1/multiqc_data
+[2022-11-28 18:38:33,648] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpnw2vg9m0/multiqc_data' to '/home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/multiqc/cutadapt/Reg1/multiqc_data'
+[2022-11-28 18:38:33,714] multiqc                                            [INFO   ]  MultiQC complete

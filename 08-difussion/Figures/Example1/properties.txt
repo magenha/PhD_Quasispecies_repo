@@ -1,0 +1,7 @@
+n_0 = 1000
+n_steps = 100
+N_max = 10**4
+step = 1
+2D
+f -> variable
+

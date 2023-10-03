@@ -1,0 +1,11 @@
+
+  /// MultiQC 🔍 | v1.13
+
+|           multiqc | Only using modules: flash
+|           multiqc | Search path : /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/log/flash2/Reg1
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 70/70  
+|             flash | Found 35 log reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : out/multiqc/flash2/Reg1/multiqc_report.html
+|           multiqc | Data        : out/multiqc/flash2/Reg1/multiqc_data
+|           multiqc | MultiQC complete

@@ -1,0 +1,20 @@
+En seqs_index.txt hay un diccionario que indexa todas las secuencias que aparecen en el experimento a t=43º. 
+
+Usar el indexado, para en cada paso, tener idea de que secuencia tuvo tal abundancia. 
+
+
+Del meet con Luiño
+-Pasar los angulos a grados
+-Calcular las distancias de Kolmogorov-Smirnoff. Para consecutivos y respecto a la inicial
+-Distancia Jensen-Shannon, para consecutivos y respecto a la inicial
+-Optimal transport theory. Quizas aca hay medidas para tener en cuenta la distancias en la red genomica. Hay que ver cuanto se ha desplazado la poblacion en termino de los nodos de la red.
+-revisar las abundancias, ver si tienen forma exponencial y muy distinto su parametro
+-Jackknifing
+
+
+DONE
+-Hacer el plot sobre una esfera de theta(step-origin) -> psi y theta(step-step_i-1) -> theta. 
+-revisar mi calculo de Entropia
+-eliminar el punto step=10 y step=60 porque tienen otra medicion, y va a dar un bajon en el grafico.
+
+

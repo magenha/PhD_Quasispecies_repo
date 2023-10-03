@@ -1,0 +1,53 @@
+This is cutadapt 4.1 with Python 3.10.6
+Command line parameters: -q 25 -g ^GAATGTTGGTGACATACTTGCT -O 13 -G ^N{10}TTGCCATGATCAAATTGACC -m 50 -o /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/Reg1/30-1-26-EL3_R1_all_all_trim.fastq.gz -p /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/Reg1/30-1-26-EL3_R2_all_all_trim.fastq.gz --pair-filter=any --too-short-output /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/too_short/Reg1/30-1-26-EL3_R1_all_less_m50.fastq --too-short-paired-output /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/too_short/Reg1/30-1-26-EL3_R2_all_less_m50.fastq --untrimmed-output /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/untrimmed/Reg1/30-1-26-EL3_R1_all_untrimmed.fastq --untrimmed-paired-output /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/out/cutadapt/untrimmed/Reg1/30-1-26-EL3_R2_all_untrimmed.fastq /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/res/Reg1/30-1-26-EL3_R1_all.fastq.gz /home/samuel/Documents/PhD/Quasispecies/00-data_clean_process/res/Reg1/30-1-26-EL3_R2_all.fastq.gz
+Processing paired-end reads on 1 core ...
+Finished in 90.62 s (181 µs/read; 0.33 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:            502,038
+  Read 1 with adapter:                 494,007 (98.4%)
+  Read 2 with adapter:                 486,692 (96.9%)
+
+== Read fate breakdown ==
+Pairs that were too short:               8,788 (1.8%)
+Pairs discarded as untrimmed:            9,337 (1.9%)
+Pairs written (passing filters):       483,913 (96.4%)
+
+Total basepairs processed:   251,205,474 bp
+  Read 1:   125,514,164 bp
+  Read 2:   125,691,310 bp
+Quality-trimmed:               9,424,722 bp (3.8%)
+  Read 1:       813,282 bp
+  Read 2:     8,611,440 bp
+Total written (filtered):    210,297,833 bp (83.7%)
+  Read 1:   109,775,565 bp
+  Read 2:   100,522,268 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: GAATGTTGGTGACATACTTGCT; Type: anchored 5'; Length: 22; Trimmed: 494007 times
+
+No. of allowed errors: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+20	81	0.0	2	0 0 81
+21	800	0.0	2	0 735 65
+22	492842	0.0	2	461935 28210 2697
+23	284	0.0	2	0 263 21
+
+
+=== Second read: Adapter 2 ===
+
+Sequence: NNNNNNNNNNTTGCCATGATCAAATTGACC; Type: anchored 5'; Length: 30; Trimmed: 486692 times
+
+No. of allowed errors: 2
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+28	123	0.0	2	0 0 123
+29	2247	0.0	2	0 1865 382
+30	483793	0.0	2	433274 45880 4639
+31	521	0.0	2	0 420 101
+32	8	0.0	2	0 0 8
