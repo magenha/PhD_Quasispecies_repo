@@ -6,14 +6,16 @@
 #include <cstdlib>
 #include <vector>
 #include <sstream>
+#include <time.h>
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
 	// Define and initialize variables:
-	int n_rw = 1000, tMax = 1000, L = 10000, A = 4;
+	int n_rw = 1000, tMax = 10000, L = 1000, A = 4;
 	int iMutate;
-	int f = 10; // replication
+	int f = 1; // replication
 	char *vocabulary, dummyChar;
 	vector<char *> x(n_rw);
 	vocabulary = new char[A];
@@ -45,6 +47,7 @@ int main(int argc, char *argv[])
 
 	for (int t = 0; t < tMax; t++)
 	{
+		cout << t << endl;
 		d2.clear();
 		// cout << "Time: " << t << endl;
 		thisMeanD2 = 0;
@@ -119,7 +122,7 @@ int main(int argc, char *argv[])
 		}
 		variance_d = variance_d / d2.size();
 
-		cout << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
+		// cout << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
 		fOut << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
 	}
 
