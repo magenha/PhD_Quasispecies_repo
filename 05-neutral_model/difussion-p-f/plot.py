@@ -27,7 +27,7 @@ for f in f_values:
     tMax = len(dR); 
     trivialD2 = [tt for tt in range(tMax)]; 
 
-    plt.plot(df['variance'].tolist(), f"{f_marker_dict[f]}", markersize=3, label=f'f={f}')
+    plt.plot(df['variance'].tolist(), f"{f_marker_dict[f]}", markersize=1, label=f'f={f}')
     plt.ylabel('Variance')
     plt.xlabel('t')
     plt.legend(loc='best')
@@ -38,7 +38,7 @@ for f in f_values:
     df = pd.read_csv(f"dataOut_f_{f}.csv", header=None)
     df.columns = ['mean', 'variance', 'd2']
 
-    plt.plot(df['mean'].tolist(), f"{f_marker_dict[f]}", markersize=3, label=f'f={f}')
+    plt.plot(df['mean'].tolist(), f"{f_marker_dict[f]}", markersize=1, label=f'f={f}')
     plt.ylabel('<d>')
     plt.xlabel('t')
     plt.legend(loc='best')
@@ -50,12 +50,12 @@ y = (A-1)/A * L * (1-np.exp(-1.0*(A/(A-1))*x/L))
 
 plt.figure();
 plt.plot(df_sim['m'],  label='m simulation')
-plt.plot(x,y,'--', c='black', label='Analytical')
+plt.plot(x,y,'--', c='black', markersize=5, label='Analytical')
 for f in f_values:
      
     df = pd.read_csv(f"dataOut_f_{f}.csv", header=None)
     df.columns = ['mean', 'variance', 'd2']
-    plt.plot(dR, f"{f_marker_dict[f]}", markersize=3, label=f'simulated f={f}'); 
+    plt.plot(df['d2'], f"{f_marker_dict[f]}", markersize=1, label=f'simulated f={f}'); 
     #plt.plot(trivialD2, label='alpha=1'); 
     #plt.plot(df_sim['m'], label='m simulation')
     plt.ylabel('<d^2>')
@@ -70,7 +70,7 @@ for f in f_values:
     ax = fig.gca(); 
     df = pd.read_csv(f"dataOut_f_{f}.csv", header=None)
     df.columns = ['mean', 'variance', 'd2']
-    plt.plot(dR,f"{f_marker_dict[f]}", markersize=3, label=f'simulated f={f}'); 
+    plt.plot(df['d2'],f"{f_marker_dict[f]}", markersize=1, label=f'simulated f={f}'); 
     #plt.plot(trivialD2, label='alpha=1'); 
     
     ax.set_xscale("log"); 
