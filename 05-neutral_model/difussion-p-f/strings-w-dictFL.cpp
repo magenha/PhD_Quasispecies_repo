@@ -7,6 +7,7 @@
 #include <vector>
 #include <sstream>
 #include <time.h>
+#include <tuple>
 using namespace std;
 
 int Humming_distance(vector<char> s1, vector<char> s_ref)
@@ -28,9 +29,9 @@ int main(int argc, char *argv[])
 
 	srand(time(NULL));
 	// Define and initialize variables:
-	int n_rw = 100, tMax = 100, L = 1000, A = 4;
+	int n_rw = 10, tMax = 1000, L = 1000, A = 4;
 	int iMutate;
-	int f = 1; // replication
+	tuple<vector<char>, int> f_values;
 	char *vocabulary, dummyChar;
 	vector<char *> x(n_rw);
 	vocabulary = new char[A];
@@ -82,27 +83,7 @@ int main(int argc, char *argv[])
 			{
 				s[r] = x[i][r];
 			}
-			if (fstr == "sqrt")
-			{
-				f = round(sqrt(Humming_distance(s, origin)));
-			}
-			if (fstr == "linear")
-			{
-				f = Humming_distance(s, origin);
-			}
-			if (fstr == "pow2")
-			{
-				f = pow(Humming_distance(s, origin), 2);
-			}
-			if (fstr == "inverse")
-			{
-				f = round(100 / (1 + Humming_distance(s, origin)));
-			}
 
-			if (f == 0)
-			{
-				f = 1;
-			}
 			// Create f copies with mutation. Add them to aux_x population
 			for (int k = 0; k < f; k++)
 			{
@@ -170,7 +151,7 @@ int main(int argc, char *argv[])
 		variance_d = variance_d / d2.size();
 
 		// cout << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
-		fOut << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
+		// fOut << mean_d << "," << variance_d << "," << thisMeanD2 / n_rw << endl;
 	}
 
 	delete[] vocabulary;

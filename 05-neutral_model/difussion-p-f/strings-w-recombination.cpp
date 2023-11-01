@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	// Define and initialize variables:
 	int n_rw = 1000, tMax = 10000, L = 1000, A = 4;
 	int iMutate;
-	int f = 10; // replication
+	int f = 1; // replication
 	char *vocabulary, dummyChar;
 	vector<char *> x(n_rw);
 	vocabulary = new char[A];
