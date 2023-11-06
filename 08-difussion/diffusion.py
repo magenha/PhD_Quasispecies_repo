@@ -72,7 +72,7 @@ wt_sequence_B='CAACAAGGTCAGCTATATCATAATATCGATATTGTAGACGGCTTTGACAGACGTGACATCCGGCT
 wt_sequence_C = 'CAACAAGGTCAGCTATATCATAATATCGGTATTGTAGACGGCTTTGACAGACGTGACATCCGGCTCAAATCTTTCACCATAAAAGGTGAACGAAATGGGCGGCCTGTTAACGTTTCTGCTAGCCTGTCTGCTGTCGATTTATTTTACAGCCGACTCCATACGAGCAATCTTCCGTTCGCTACACTAGATCTTGATACTACCTTTAGTTCGTTTAAACACGTTCTTGATAGTATCTTTTTATTAACCCAACGCATAAAGCGTTGAAACTTTG'
 wt_sequence_D = 'CAACAAGGTCAGCTATATCATAATATCGATATTGTAGACGGCTTTGACAGACGTGACATCCGACTCAAATCTTTCACCATAAAAGGTGAACGAAATGGGCGGCCTGTTAACGTTTCTGCTAGCCTGTCTGCTGTCGATTTATTTTACAGCCGACTCCATACGAGCAATCTTCCGTTCGCTACACTAGATCTTGATACTACCTTTAGTTCGTTTAAACACGTTCTTGATAGTATCTTTTTATTAACCCAACGCGTAAAGCGTTGAAACTTTG'
 
-wt_sequence = wt_sequence_D
+wt_sequence = wt_sequence_A
 
 temps = [30,43]
 cmap = {30: '#42c1eb', 43:'#ed4242'}
@@ -132,10 +132,10 @@ for thisFileName in allFileNames:
                 abundance=int(line.split('-')[1].replace('\n', ''))
                 sequence = lines[i+1].replace('\n', '')
                 #print(id)
-                d = distance(sequence,wt_sequence)
+                m = distance(sequence,wt_sequence)
                 for n in range(abundance):
-                    #d_results_list[t][step].append(math.sqrt(d))
-                    d_results_list[t][step].append(d)
+                    #d_results_list[t][step].append(math.sqrt(m))
+                    d_results_list[t][step].append(m)
 '''
 t=30
 step=10
@@ -153,10 +153,7 @@ if 1==1:
         #for t in [30]:
         L = list(d_results_list[t].keys())
         L.sort()
-        y = []
-        y_err = []
-        y_sq = []
-        index = []
+        y_sq = []   #List that will contain the mean squared value of the m's
         step_list=[]
 
         #Compute moments of d
@@ -166,12 +163,14 @@ if 1==1:
 
                 y_sq.append((np.array(d_results_list[t][step])**2).mean())
 
+        #Fit
         b,w,E = calculateParametersLSR(np.log2(np.array(step_list)), np.log2(np.array(y_sq)))
-        
-        
+        print(f't={t}, alpha={w} +- {E}')
         x = np.array(step_list)
         y_aster = 2**b *x**w
         plt.plot(x,y_aster, symbline[t], c=cmap_line[t], label=f'{greek_leeterz[0]}:{round(w,2)}+-{round(E,2)}')
+        
+        #Select points previous to step=30 to plot them
         step_list = []
         y_sq = []
 
@@ -181,23 +180,13 @@ if 1==1:
 
                 y_sq.append((np.array(d_results_list[t][step])**2).mean())
 
-        #Do fitting for steps <25
-        #step_list = np.array(step_list)
-        #b,w,E = calculateParametersLSR(np.log2(np.array(step_list)), np.log2(np.array(y_sq)))
         
-        
-        #x = np.array(step_list)
-        #y_aster = 2**b *x**w
-
-        #plt.plot(x,y_aster, '-.', c=cmap[t], label=f'<30 {greek_leeterz[0]}:{round(w,2)}+-{round(E,2)}')
-
         step_list = []
         y_sq = []
         #Now search the points to do the plot of r^2
         for step in L:
             if step not in [1,4,10,60]:
                 step_list.append(step)
-
                 y_sq.append((np.array(d_results_list[t][step])**2).mean())
 
         plt.plot(np.array(step_list), np.array(y_sq), symbmap[t], c=cmap[t], label=f'{t}')
@@ -206,24 +195,17 @@ if 1==1:
     plt.xticks(np.linspace(min(step_list), max(step_list), 5))
     plt.rcParams.update({'font.size': 18})
     plt.gca().yaxis.set_major_formatter(FuncFormatter(format_func))
-    plt.ylabel('Average number of mutations, m')
+    #plt.ylabel('Mean squared displacement, <m^2>')
+    plt.ylabel('Average number of mutations, <m>')
     plt.xlabel('step')
     plt.tight_layout()
     plt.savefig(f'./MSD_fit.svg', dpi=300, format='svg')
     plt.savefig(f'./MSD_fit.png', dpi=300, format='png')
     
-    #plt.yticks(np.linspace(min(y_sq), max(y_sq)*1.1, 5))
-    #plt.xticks(np.linspace(min(step_list), max(step_list), 5))
-    #plt.yscale('log')
-    #plt.xscale('log')
-    #plt.xlim((28,61))
-    #plt.rcParams.update({'font.size': 18})
-    #plt.gca().yaxis.set_major_formatter(FuncFormatter(format_func))
-    #plt.savefig(f'./MSD_fit_log.svg', dpi=300, format='svg')
-    #plt.savefig(f'./MSD_fit_log.png', dpi=300, format='png')
+    
 
 #Activate this to plot <r>, variance, index with fitting
-if 1==1:
+if 0==1:
     #Mean
     plt.figure(figsize=(8,6))
     for t in temps:
