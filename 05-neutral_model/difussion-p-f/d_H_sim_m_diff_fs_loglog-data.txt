@@ -1,6 +1,0 @@
-Simulations were realized using n_rw=1000 . 
-Sequences had length = 10000 and alphabet=['A', 'C', 'G', 'T'] of length A=4
-Were implemented 3 different values of replication rate f=[1,3,10]
-Results presented: for each t, average of the n_rw values is shown
-
-The simualation of m used the exact same values. This is just a single realization. 
