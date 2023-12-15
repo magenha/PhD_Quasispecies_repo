@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	int tMax = 20; // other option: int(0.005 * float(L))
 	int iMutate;   // This is a dummy variable to indicate the locus of the mutation
 
-	float p = 1.0; // Holeyness of the FL
+	float p = 0.9; // Holeyness of the FL
 	vector<int> f_list;
 	f_list.push_back(1);
 	f_list.push_back(2);
